@@ -1,0 +1,28 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Cross-Lingual Sycophancy in LLMs
+# Requirements
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Core
+openai>=1.0.0          # GPT-4o inference (optional — paid)
+groq>=0.4.0            # Llama-70B inference (free at console.groq.com)
+together>=0.2.0        # Qwen-32B inference (free tier at api.together.ai)
+
+# Data
+pandas>=2.0.0          # Results management and CSV handling
+
+# Visualization
+matplotlib>=3.7.0      # Plots and heatmaps
+seaborn>=0.12.0        # Flip rate heatmaps
+
+# Utilities
+python-dotenv>=1.0.0   # Load API keys from .env file
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Local inference (Ollama) — install separately, not via pip
+# curl -fsSL https://ollama.ai/install.sh | sh
+# ollama pull llama3:8b
+# ollama pull llama3:8b-instruct
+# ollama pull mistral
+# ollama pull mistral:instruct
+# ─────────────────────────────────────────────────────────────────────────────
