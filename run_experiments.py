@@ -1,3 +1,9 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# COMPUTE: Free options — Groq API (llama3-70b), Ollama (llama3-8b, mistral)
+#          Paid optional — OpenAI API for GPT-4o only (~$5-10 total)
+#          Sign up free: console.groq.com | api.together.ai
+# ─────────────────────────────────────────────────────────────────────────────
+import os
 """
 Full Experiment Runner — Base vs Instruction-Tuned LLMs on Noisy Text
 Gupta et al. 2020/2021 methodology extended to modern LLMs.
@@ -23,7 +29,6 @@ Usage:
     python run_experiments.py --scale full --task imdb
 """
 
-import os
 import csv
 import json
 import random
@@ -36,9 +41,12 @@ SMALL_SCALE_N = 15
 RANDOM_SEED = 42
 
 # API Keys — set via environment variables
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+# Groq is FREE — sign up at console.groq.com
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
+# Together.ai free tier — sign up at api.together.ai
 TOGETHER_API_KEY = os.environ.get("TOGETHER_API_KEY", "")
+# OpenAI is PAID — optional, only needed for GPT-4o
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 
 # ── MODEL REGISTRY ──────────────────────────────────────────────────────────
 MODELS = {
@@ -251,7 +259,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--scale", default="small", choices=["small", "full"])
     parser.add_argument("--task", default="sentiment", choices=["sentiment", "similarity"])
-    parser.add_argument("--models", nargs="+", default=["llama3-8b-base", "llama3-8b-instruct"])
+    parser.add_argument("--models", nargs="+", default=["llama3-70b-base", "llama3-70b-instruct"],
+                        help="Models to run. Default uses Groq free API. Add 'gpt-4o' only if you have an OpenAI API key.")
     args = parser.parse_args()
 
     run_experiment(args.models, scale=args.scale, task=args.task)
